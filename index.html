@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <title>Patika Başvuru Sayfası</title>
+</head>
+<body>
+    <br>
+    <img src="patikaLogo.png" alt="logo" class="logo"/>
+    <br>
+    <div class="title">Bootcamp Başvuru Formu</div>
+    <br>
+    <div class="form-sec">
+        <form id="form" onsubmit="return getInfo()">
+            <br>
+            <label>İsim - Soyisim:</label><br>
+            <input type="text" id="fname" required><br><br>
+
+            <label>Telefon Numarası:</label><br>
+            <input type="text" id="tel" required><br><br>
+
+            <label>Mail Adresi:</label><br>
+            <input type="email" id="email" required><br><br>
+
+            <label>Eğitim Durumu:</label><br>
+            <select name="durum" id="egitim">
+              <option value="Mezun">Mezun</option>
+              <option value="Lisans">Lisans</option>
+              <option value="Ön Lisans">Ön Lisans</option>
+              <option value="Yüksek Lisans">Yüksek Lisans</option>
+            </select>
+            <br><br>
+
+            <label>Cinsiyet:</label><br>
+            <select name="durum" id="gender">
+              <option value="Kadın">Kadın</option>
+              <option value="Erkek">Erkek</option>
+              <option value="Belirtmek İstemiyorum">Belirtmek istemiyorum</option>
+              <option value="Diğer">Diğer</option>
+            </select>
+            <br><br>
+  
+            <p>Hangi alanda çalışmak istersiniz?</p>
+            <input class="messageCheckbox" type="checkbox" value="Front-end Developer" name="alanad" checked>
+            <label>Front-end Developer (Javascript, React, Angular)</label><br>
+            <input class="messageCheckbox" type="checkbox" value="Back-end Developer" name="alanad">
+            <label>Back-end Developer (Java, .NET, PHP, Node.js)</label><br>
+            <input class="messageCheckbox" type="checkbox" value="Mobile Developer" name="alanad">
+            <label>Mobile Developer (iOS, Android, React Native)</label><br><br>
+            <div class="button">
+                <button class="btn" type="submit">GÖNDER</button>
+            </div>
+
+        </form>
+
+            <script type="text/javascript">
+
+                //To select a single option in the Checkbox
+                $('.messageCheckbox').on('change', function() {
+                    $('.messageCheckbox').not(this).prop('checked', false);  
+                });
+
+                //Object created to assign the entered inputs with their values.
+                let items={
+                
+                };
+
+                //An array that is opened to hold previously entered values.
+                let output=[];
+
+                //Function created to return information after pressing the button.
+                function getInfo() {
+                    name = document.getElementById('fname').value;
+                    tel = document.getElementById('tel').value;
+                    email=document.getElementById('email').value;
+                    egitim=document.getElementById('egitim').value;
+                    alan = document.querySelector('.messageCheckbox:checked').value;
+                    cinsiyet=document.getElementById('gender').value;
+                    items.name=name;
+                    items.tel=tel;
+                    items.email=email;
+                    items.egitim=egitim;
+                    items.alan=alan;
+                    items.cinsiyet=cinsiyet
+                    output.push({name:name,tel:tel,email:email,egitim,alan:alan,cinsiyet:cinsiyet})
+                    console.table(output);
+                    document.getElementById("form").reset()
+                    return false
+                }
+            </script>
+    <br><br>
+</body>
+</html>
